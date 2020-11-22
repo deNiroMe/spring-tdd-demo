@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layouts/main">
+<head>
+    <title th:text="${add} ? 'Create a Book' : 'Edit a Book'" >title</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="container">
+        
+        <h4 class="h4" th:text="${add} ? 'Add a new Book' : 'Edit Book'"></h4>
+
+            <form th:action="${add} ? @{/books/add} : @{/books/{bookId}/edit(bookId=${book.id})}"
+                  th:object="${book}" method="POST">
+
+                <div class="form-group row" th:if="${book.id}">
+                    <label for="staticId" class="col-sm-3 col-form-label">Id</label>
+                    <div class="col-sm-9">
+                        <input readonly class="form-control-plaintext" id="staticId" th:field="${book.id}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputTitle" class="col-sm-3 col-form-label">Title</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="inputTitle" th:field="*{title}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputGenre" class="col-sm-3 col-form-label">Genre</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="inputGenre" th:field="*{genre}">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputSummary" class="col-sm-3 col-form-label">Summary</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" rows="4" id="inputSummary" th:field="*{summary}"> </textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary mb-2 pull-right" th:text="${add} ? 'Create' : 'Update'"></button>
+
+            </form>
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${errorMessage}">
+                <p th:utext="${errorMessage}"></p>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+    </div>
+
+</div>
+
+</body>
+</html>

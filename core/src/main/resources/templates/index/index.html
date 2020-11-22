@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layouts/main">
+<head>
+    <title th:utext="${title}">title</title>
+</head>
+<body>
+
+    <div layout:fragment="content">
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h1 th:utext="${title}" class="index mt-5"></h1>
+                <p class="lead"><a th:href="@{/books}">Go to books List</a></p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

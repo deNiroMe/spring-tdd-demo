@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  books_mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=books_db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    ports:
+      - 3306:3306
+
+  books_api:
+    image: spring-thymleaf-tdd
+    restart: on-failure
+    depends_on:
+      - books_mysql
+    ports:
+      - 8099:8099
+    environment:
+      - DATABASE_HOST=books_mysql
+      - DATABASE_USER=ahmed
+      - DATABASE_PASSWORD=ahmed
+      - DATABASE_NAME=books_db
+      - DATABASE_PORT=3306

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layouts/main">
+<head>
+    <title>View Book</title>
+    <style>
+        dl {
+            width: 100%;
+            overflow: hidden;
+            padding: 0;
+            margin: 20px 0px 30px 0px;
+        }
+        dt {
+            float: left;
+            width: 30%;
+            margin: 0
+        }
+        dd {
+            float: left;
+            width: 70%;
+            padding: 0;
+            margin: 0
+        }
+    </style>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="container">
+
+        <h4 class="h4">Book details</h4>
+
+        <dl>
+            <dt>Id</dt>
+            <dd th:utext="${book.id}"></dd>
+            <dt>Title</dt>
+            <dd th:utext="${book.title}"></dd>
+            <dt>Genre</dt>
+            <dd th:utext="${book.genre}"></dd>
+            <dt>Summary</dt>
+            <dd th:utext="${book.summary}"></dd>
+        </dl>
+
+        <a class="btn btn-primary mb-2 pull-right" th:href="@{/books/{bookId}/edit(bookId=${book.id})}">Edit</a>
+        <a class="btn btn-warning mb-2 pull-right" th:href="@{/books/{bookId}/delete(bookId=${book.id})}">Delete</a>
+
+        <form th:if="${allowDelete}" th:action="@{/books/{bookId}/delete(bookId=${book.id})}" method="POST">
+            Delete this book? <input  class="btn btn-danger mb-2" type="submit" th:value="Yes" />
+        </form>
+
+        <div th:if="${errorMessage}" th:utext="${errorMessage}" class="error" />
+
+    </div>
+
+</div>
+
+</body>
+</html>

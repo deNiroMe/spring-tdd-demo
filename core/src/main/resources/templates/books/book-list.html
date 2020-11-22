@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      layout:decorator="layouts/main">
+<head>
+    <title>Books</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="container">
+
+        <h4 class="h4">Books List</h4>
+
+        <table class="table">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Title</th>
+                <th scope="col">Genre</th>
+                <th scope="col">Edit</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each ="book : ${books}">
+                <td><a th:utext="${book.id}">...</a></td>
+                <td><a th:href="@{/books/{bookId}(bookId=${book.id})}" th:utext="${book.title}">...</a></td>
+                <td th:utext="${book.genre}">...</td>
+                <td>
+                    <a th:href="@{/books/{bookId}/edit(bookId=${book.id})}">Edit</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <nobr>
+                <span th:if="${hasPrev}"><a th:href="@{/books?page={prev}(prev=${prev})}">Prev</a>&nbsp;&nbsp;&nbsp;</span>
+                <span th:if="${hasNext}"><a th:href="@{/books?page={next}(next=${next})}">Next</a></span>
+            </nobr>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
