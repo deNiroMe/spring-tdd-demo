@@ -1,6 +1,7 @@
 package edu.tdd.springthymeleaftdd.config;
 
 
+import edu.tdd.springthymeleaftdd.SpringThymeleafTddApplication;
 import io.cucumber.spring.CucumberContextConfiguration;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +17,7 @@ import org.springframework.test.context.TestPropertySource;
 @ContextConfiguration
 @CucumberContextConfiguration
 @TestPropertySource(locations = "/selenium-application.properties")
-@SpringBootTest(classes = {  edu.tdd.springthymeleaftdd.SpringThymeleafTddApplication.class},
+@SpringBootTest(classes = {  SpringThymeleafTddApplication.class},
                 webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class CucumberSpringContextConfiguration {
 
