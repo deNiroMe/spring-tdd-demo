@@ -14,7 +14,7 @@
 
 	<groupId>edu.tdd</groupId>
 	<artifactId>spring-tdd-demo</artifactId>
-	<version>0.0.8.SNAPSHOT</version>
+	<version>0.0.8.SNAPSHOT.RELEASE</version>
 	<name>spring-tdd-demo</name>
 	<description>Demo project for Spring Boot and thymeleaf tdd example</description>
 
